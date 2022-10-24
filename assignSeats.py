@@ -11,7 +11,7 @@ def assignSeats() -> list:
 
     l = getPossibleBadAssingees(df)  # get people who have not yet been on a bad set and are thus elligble
     badSeatsPeople = pickXRandom(l, 14)  # pick 14 people from this list randomly
-    seats[0:12] = badSeatsPeople  # assign them bad seats
+    seats[0:14] = badSeatsPeople  # assign them bad seats
 
     fnames, lnames = [i[0] for i in badSeatsPeople], [i[1] for i in badSeatsPeople]
     remaining = df[~((df["firstName"].isin(fnames)) & (df["lastName"].isin(lnames)))]  # get all not yet assigned people
