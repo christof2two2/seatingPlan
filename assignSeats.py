@@ -1,6 +1,7 @@
 from helperFunctions import loadPeople, getPossibleBadAssingees, pickXRandom, makeSeatBox
 import random
 from PIL import Image
+import time
 
 
 def assignSeats() -> list:
@@ -89,5 +90,13 @@ def render(seats: list) -> None:
 
 
 if __name__ == "__main__":
+    startTime = time.time()
     seats = assignSeats()
+    assignmentDuration = round(time.time() - startTime,2)
+
+    startTime = time.time()
     render(seats)
+    renderDuration = round(time.time()- startTime,2)
+    
+    print(f"Assignment time: {assignmentDuration}s, Render time: {renderDuration}s, total time: {assignmentDuration+renderDuration}s")
+
