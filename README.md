@@ -1,5 +1,5 @@
 # Seating Plan Tool
-Tool to write assingn seats at Vlerick Bussines school.
+Tool to write assign seats at Vlerick Bussines school.
 ## Use
 ```console
 python assignSeats.py
