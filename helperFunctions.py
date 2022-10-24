@@ -8,24 +8,18 @@ def loadPeople() -> pd.DataFrame:
 
 
 def getPossibleBadAssingees(df: pd.DataFrame) -> list:
-    opt = list(df[df["badSeats"] <= 0][["firstName", "lastName"]].itertuples(index=False, name=None))
-    return opt
-
+    return list(df[df["badSeats"] <= 0][["firstName", "lastName"]].itertuples(index=False, name=None))
 
 def pickXRandom(l: list, x: int) -> list:
     random.shuffle(l)
     return l[0:x]
 
-
-def makeSeatBox(
-    width: int, height: int, tuple, borderSize: int = 2, textHeight: int = 60
-) -> Image.Image:
+def makeSeatBox(width: int, height: int, tuple=[str,str], borderSize: int = 2, textHeight: int = 60) -> Image.Image:
     fname, lname = tuple[0], tuple[1]
     canvas = ImageOps.expand(
         Image.new("RGB", (width - borderSize, height - borderSize), "lightgrey"),
         border=borderSize,
-        fill="black",
-    )
+        fill="black")
     try:
         img = Image.open(f"data/photos/{lname} {fname}.jpg", "r")
         w, h = img.size
@@ -35,7 +29,7 @@ def makeSeatBox(
         img = Image.open(f"data/photos/default.jpg", "r")
     img.thumbnail((width - borderSize, height - borderSize - textHeight))
     draw = ImageDraw.Draw(canvas)
-    margin = int((width - img.size[1] - 2 * borderSize) / 2)
+    margin = int((width - img.size[0] - 2 * borderSize) / 2)
     canvas.paste(img, (borderSize + margin, borderSize))
     font = ImageFont.truetype("arial.ttf", 27)
     message = fname
@@ -47,6 +41,5 @@ def makeSeatBox(
         ((width - w) / 2, img.size[1] + borderSize + h),
         message,
         font=font,
-        fill=(0, 0, 0),
-    )
+        fill=(0, 0, 0))
     return canvas
