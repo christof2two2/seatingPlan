@@ -19,7 +19,7 @@ def assignSeats() -> list:
     # assign everybody not yet assigned a random seat
     remaining = list(remaining[["firstName", "lastName"]].itertuples(index=False, name=None))
     random.shuffle(remaining)
-    seats[12:] = remaining
+    seats[14:] = remaining
 
     # check if maxine is on row 2
     index = [x for x, y in enumerate(seats[53:]) if y[0] == "Maxine"]
